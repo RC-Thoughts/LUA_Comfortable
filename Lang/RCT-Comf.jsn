@@ -1,0 +1,14 @@
+{
+  "default":"en",
+  "en":{
+    "appName":"RCT-Comfortable",
+    "sw":"Select Switch",
+	"inIdle":"When idle",
+	"inUse":"When in use",
+	"bLight":"Brightness (0-1000)",
+	"bLightMode":"Backlight mode (0-3)",
+	"volume":"Volume (0-16)",
+	"volPlay":"Voice volume (0-100)",
+	"volBeep":"Beep volume (0-100)"
+  }
+}
