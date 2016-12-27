@@ -8,6 +8,8 @@
 	louder volume during use and less when being idle on 
 	pit-area for example.
 	
+	Italian translation courtesy from Fabrizio Zaini
+	---------------------------------------------------------
 	Localisation-file has to be as /Apps/Lang/RCT-Comf.jsn
 	---------------------------------------------------------
 	Comfortable is part of RC-Thoughts Jeti Tools.
@@ -233,6 +235,6 @@ local function init()
 	end
 end
 --------------------------------------------------------------------------------
-comfVersion = "1.0"
+comfVersion = "1.1"
 setLanguage()
 return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"} 	

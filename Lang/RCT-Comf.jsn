@@ -10,5 +10,16 @@
 	"volume":"Volume (0-16)",
 	"volPlay":"Voice volume (0-100)",
 	"volBeep":"Beep volume (0-100)"
+  },
+  “it":{
+	"appName":"RCT-confortevole",
+	"sw":"Seleziona Switch",
+	"inIdle”:”quando a riposo",
+	"inUse”:”quando in uso",
+	"bLight”:"Luminosità (0-1000)",
+	"bLightMode”:”Retro illuminaz. (0-3)",
+	"volume":"Volume (0-16)",
+	"volPlay”:”Volume Voce (0-100)",
+	"volBeep”:”Volume Beep (0-100)"
   }
 }
