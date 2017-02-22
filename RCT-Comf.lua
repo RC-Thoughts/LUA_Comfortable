@@ -17,6 +17,7 @@
 	Released under MIT-license by Tero @ RC-Thoughts.com 2016
 	---------------------------------------------------------
 --]]
+collectgarbage()
 --------------------------------------------------------------------------------
 -- Locals for application
 local bLightIdle, bLightUse, bLightModeIdle, bLightModeUse, comfSwitch
@@ -233,8 +234,10 @@ local function init()
 		system.pLoad("volBeepIdle")
 		system.pLoad("volBeepUse")
 	end
+    collectgarbage()
 end
 --------------------------------------------------------------------------------
 comfVersion = "1.1"
+collectgarbage()
 setLanguage()
 return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"} 	
