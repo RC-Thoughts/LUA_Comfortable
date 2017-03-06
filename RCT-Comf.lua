@@ -14,7 +14,7 @@
 	---------------------------------------------------------
 	Comfortable is part of RC-Thoughts Jeti Tools.
 	---------------------------------------------------------
-	Released under MIT-license by Tero @ RC-Thoughts.com 2016
+	Released under MIT-license by Tero @ RC-Thoughts.com 2017
 	---------------------------------------------------------
 --]]
 collectgarbage()
@@ -35,11 +35,11 @@ local function readFile(path)
 				lines[#lines+1] = buf
 				else
 				break   
-			end   
-		end 
+            end   
+        end 
 		io.close(f)
 		return table.concat(lines,"") 
-	end
+    end
 end 
 --------------------------------------------------------------------------------
 -- Read translations
@@ -49,7 +49,7 @@ local function setLanguage()
 	local obj = json.decode(file)  
 	if(obj) then
 		trans9 = obj[lng] or obj[obj.default]
-	end
+    end
 end
 --------------------------------------------------------------------------------
 local function bLightIdleChanged(value)
@@ -121,23 +121,23 @@ local function initForm()
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.bLight,width=220})
-	form.addIntbox(bLightIdle,-0,1000,0,0,1,bLightIdle)
+	form.addIntbox(bLightIdle,-0,1000,0,0,1,bLightIdleChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.bLightMode,width=220})
-	form.addIntbox(bLightModeIdle,-0,3,0,0,1,bLightModeIdle)
+	form.addIntbox(bLightModeIdle,-0,3,0,0,1,bLightModeIdleChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volume,width=220})
-	form.addIntbox(volIdle,-0,16,0,0,1,volIdle)
+	form.addIntbox(volIdle,-0,16,0,0,1,volIdleChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volPlay,width=220})
-	form.addIntbox(volPlayIdle,-0,100,0,0,1,volPlayIdle)
+	form.addIntbox(volPlayIdle,-0,100,0,0,1,volPlayIdleChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volBeep,width=220})
-	form.addIntbox(volBeepIdle,-0,100,0,0,1,volBeepIdle)
+	form.addIntbox(volBeepIdle,-0,100,0,0,1,volBeepIdleChanged)
 	
 	-- In use
 	form.addRow(1)
@@ -145,25 +145,25 @@ local function initForm()
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.bLight,width=220})
-	form.addIntbox(bLightUse,-0,1000,0,0,1,bLightUse)
+	form.addIntbox(bLightUse,-0,1000,0,0,1,bLightUseChanged)
 	
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.bLightMode,width=220})
-	form.addIntbox(bLightModeUse,-0,3,0,0,1,bLightModeUse)
+	form.addIntbox(bLightModeUse,-0,3,0,0,1,bLightModeUseChanged)
 	
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volume,width=220})
-	form.addIntbox(volUse,-0,16,0,0,1,volUse)
+	form.addIntbox(volUse,-0,16,0,0,1,volUseChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volPlay,width=220})
-	form.addIntbox(volPlayUse,-0,100,0,0,1,volPlayUse)
+	form.addIntbox(volPlayUse,-0,100,0,0,1,volPlayUseChanged)
 	
 	form.addRow(2)
 	form.addLabel({label=trans9.volBeep,width=220})
-	form.addIntbox(volBeepUse,-0,100,0,0,1,volBeepUse)
+	form.addIntbox(volBeepUse,-0,100,0,0,1,volBeepUseChanged)
 	
 	form.addRow(1)
 	form.addLabel({label="Powered by RC-Thoughts.com - v."..comfVersion.." ",font=FONT_MINI, alignRight=true})
@@ -177,67 +177,73 @@ local function loop()
 		system.setProperty("Volume", volUse)
 		system.setProperty("VolumePlayback", volPlayUse)
 		system.setProperty("VolumeBeep", volBeepUse)
-		local propSet = 1
-	end
-	if(inUse == 0 and propSet == 1) then
-		system.setProperty(Backlight, bLightIdle)
-		system.setProperty(BacklightMode, bLightModeIdle)
-		system.setProperty(Volume, volIdle)
-		system.setProperty(VolumePlayback, volPlayIdle)
-		system.setProperty(VolumeBeep, volBeepIdle)
-		local propSet = 0
-	end
+		propSet = 1
+    end
+	if(inUse ~= 1 and propSet == 1) then
+		system.setProperty("Backlight", bLightIdle)
+		system.setProperty("BacklightMode", bLightModeIdle)
+		system.setProperty("Volume", volIdle)
+		system.setProperty("VolumePlayback", volPlayIdle)
+		system.setProperty("VolumeBeep", volBeepIdle)
+		propSet = 0
+    end
 end
 --------------------------------------------------------------------------------
 local function firstInit()
 	bLightIdle = system.getProperty("Backlight")
 	bLightIdle = tonumber(bLightIdle)
 	bLightUse = bLightIdle
-	print("Backlight ", bLightIdle)
 	
 	bLightModeIdle = system.getProperty("BacklightMode")
 	bLightModeIdle = tonumber(bLightModeIdle)
 	bLightModeUse = bLightModeIdle
-	print("Backlight Mode ", bLightModeIdle)
 	
 	volIdle = system.getProperty("Volume")
 	volIdle = tonumber(volIdle)
 	volUse = volIdle
-	print("Volume ", volIdle)
 	
 	volPlayIdle = system.getProperty("VolumePlayback")
 	volPlayIdle = tonumber(volPlayIdle)
 	volPlayUse = volPlayIdle
-	print("Volume Sound ", volPlayIdle)
 	
 	volBeepIdle = system.getProperty("VolumeBeep")
 	volBeepIdle = tonumber(volBeepIdle)
 	volBeepUse = volBeepIdle
-	print("Volume Beep ", volBeepIdle)
+    
+    system.pSave("bLightIdle",bLightIdle)
+    system.pSave("bLightUse",bLightUse)
+    system.pSave("bLightModeIdle",bLightModeIdle)
+    system.pSave("bLightModeUse",bLightModeUse)
+    system.pSave("volIdle",volIdle)
+    system.pSave("volUse",volUse)
+    system.pSave("volPlayIdle",volPlayIdle)
+    system.pSave("volPlayUse",volPlayUse)
+    system.pSave("volBeepIdle",volBeepIdle)
+    system.pSave("volBeepUse",volBeepUse)
 end
 --------------------------------------------------------------------------------
 local function init()
 	system.registerForm(1,MENU_APPS, trans9.appName,initForm,nil,printForm)
-	system.pLoad("comfSwitch")
-	print("Switch ", comfSwitch)
+	comfSwitch = system.pLoad("comfSwitch")
 	if(comfSwitch == nil) then
 		firstInit()
-		else
-		system.pLoad("bLightIdle")
-		system.pLoad("bLightUse")
-		system.pLoad("bLightModeIdle")
-		system.pLoad("bLightModeUse")
-		system.pLoad("volIdle")
-		system.pLoad("volUse")
-		system.pLoad("volPlayIdle")
-		system.pLoad("volPlayUse")
-		system.pLoad("volBeepIdle")
-		system.pLoad("volBeepUse")
-	end
+    end
+    if(comfSwitch ~= nil) then
+		bLightIdle = system.pLoad("bLightIdle")
+		bLightUse = system.pLoad("bLightUse")
+		bLightModeIdle = system.pLoad("bLightModeIdle")
+		bLightModeUse = system.pLoad("bLightModeUse")
+		volIdle = system.pLoad("volIdle")
+		volUse = system.pLoad("volUse")
+		volPlayIdle = system.pLoad("volPlayIdle")
+		volPlayUse = system.pLoad("volPlayUse")
+		volBeepIdle = system.pLoad("volBeepIdle")
+		volBeepUse = system.pLoad("volBeepUse")
+    end
     collectgarbage()
 end
 --------------------------------------------------------------------------------
-comfVersion = "1.1"
+comfVersion = "1.2"
 collectgarbage()
 setLanguage()
-return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"} 	
+return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"}
