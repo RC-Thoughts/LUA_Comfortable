@@ -21,5 +21,16 @@
 	"volume":"Volume (0-16)",
 	"volPlay":"Volume Voce (0-100)",
 	"volBeep":"Volume Beep (0-100)"
+  },
+  "de":{
+    "appName":"RCT-Comfortable",
+    "sw":"Schalterauswahl",
+	"inIdle":"Sender inaktiv",
+	"inUse":"Sender in benutzung",
+	"bLight":"Helligkeit (0-1000)",
+	"bLightMode":"Beleuchtungsmodus (0-3)",
+	"volume":"Lautstärke (0-16)",
+	"volPlay":"Lautstärke Sprache (0-100)",
+	"volBeep":"Lautstärke Beep (0-100)"
   }
 }

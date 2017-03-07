@@ -11,6 +11,6 @@ Installation:
 - Copy Lang/RCT-Comf.jsn to transmitters /Apps/Lang folder
 - Run application in transmitter
 
-Tero from RC-Thoughts 2016
+Tero from RC-Thoughts 2017
 
 ![Menu-picture](https://www.rc-thoughts.com/wp-content/uploads/2016/12/comf_menu_1.png)

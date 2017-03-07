@@ -9,6 +9,7 @@
 	pit-area for example.
 	
 	Italian translation courtesy from Fabrizio Zaini
+    German translation courtesy from Christof
 	---------------------------------------------------------
 	Localisation-file has to be as /Apps/Lang/RCT-Comf.jsn
 	---------------------------------------------------------
@@ -243,7 +244,7 @@ local function init()
     collectgarbage()
 end
 --------------------------------------------------------------------------------
-comfVersion = "1.2"
+comfVersion = "1.3"
 collectgarbage()
 setLanguage()
 return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"}
