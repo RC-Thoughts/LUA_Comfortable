@@ -25,8 +25,8 @@
   "de":{
     "appName":"RCT-Comfortable",
     "sw":"Schalterauswahl",
-	"inIdle":"Sender inaktiv",
-	"inUse":"Sender in benutzung",
+	"inIdle":"Wenn inaktiv",
+	"inUse":"Wenn aktiv",
 	"bLight":"Helligkeit (0-1000)",
 	"bLightMode":"Beleuchtungsmodus (0-3)",
 	"volume":"Lautstärke (0-16)",
