@@ -9,7 +9,7 @@
 	pit-area for example.
 	
 	Italian translation courtesy from Fabrizio Zaini
-    German translation courtesy from Christof
+    German translation courtesy from Christoph Ziegler
 	---------------------------------------------------------
 	Localisation-file has to be as /Apps/Lang/RCT-Comf.jsn
 	---------------------------------------------------------
