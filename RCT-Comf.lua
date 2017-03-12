@@ -25,32 +25,15 @@ local bLightIdle, bLightUse, bLightModeIdle, bLightModeUse, comfSwitch
 local volIdle, volUse, volPlayIdle, volPlayUse, volBeepIdle, volBeepUse
 local propSet, inUse = 0, 0
 --------------------------------------------------------------------------------
--- Function for translation file-reading
-local function readFile(path) 
-	local f = io.open(path,"r")
-	local lines={}
-	if(f) then
-		while 1 do 
-			local buf=io.read(f,512)
-			if(buf ~= "")then 
-				lines[#lines+1] = buf
-				else
-				break   
-            end   
-        end 
-		io.close(f)
-		return table.concat(lines,"") 
-    end
-end 
---------------------------------------------------------------------------------
 -- Read translations
-local function setLanguage()	
-	local lng=system.getLocale();
-	local file = readFile("Apps/Lang/RCT-Comf.jsn")
-	local obj = json.decode(file)  
-	if(obj) then
-		trans9 = obj[lng] or obj[obj.default]
+local function setLanguage()
+    local lng=system.getLocale()
+    local file = io.readall("Apps/Lang/RCT-Comf.jsn")
+    local obj = json.decode(file)
+    if(obj) then
+        trans9 = obj[lng] or obj[obj.default]
     end
+    collectgarbage()
 end
 --------------------------------------------------------------------------------
 local function bLightIdleChanged(value)
@@ -168,6 +151,7 @@ local function initForm()
 	
 	form.addRow(1)
 	form.addLabel({label="Powered by RC-Thoughts.com - v."..comfVersion.." ",font=FONT_MINI, alignRight=true})
+    collectgarbage()
 end
 --------------------------------------------------------------------------------
 local function loop()
@@ -188,6 +172,7 @@ local function loop()
 		system.setProperty("VolumeBeep", volBeepIdle)
 		propSet = 0
     end
+    collectgarbage()
 end
 --------------------------------------------------------------------------------
 local function firstInit()
@@ -221,6 +206,7 @@ local function firstInit()
     system.pSave("volPlayUse",volPlayUse)
     system.pSave("volBeepIdle",volBeepIdle)
     system.pSave("volBeepUse",volBeepUse)
+    collectgarbage()
 end
 --------------------------------------------------------------------------------
 local function init()
@@ -244,7 +230,7 @@ local function init()
     collectgarbage()
 end
 --------------------------------------------------------------------------------
-comfVersion = "1.3"
+comfVersion = "1.4"
 collectgarbage()
 setLanguage()
 return {init=init,loop=loop,author="RC-Thoughts",version=comfVersion,name="Comfortable"}
